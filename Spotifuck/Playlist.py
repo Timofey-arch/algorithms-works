@@ -5,9 +5,46 @@ from LinkedList import LinkedList
 
 class PlayList(LinkedList):
 
-    def __init__(self):
+    def __init__(self, playlist_name, playlist_description, playlist_author, icon=None):
         super().__init__()
         self.current_composition = None
+        self.__playlist_name = playlist_name
+        self.__playlist_author = playlist_author
+        self.__playlist_description = playlist_description
+        self.icon = icon
+
+    @property
+    def playlist_name(self):
+        return self.__playlist_name
+
+    @property
+    def playlist_author(self):
+        return self.__playlist_author
+
+    @property
+    def playlist_description(self):
+        return self.__playlist_description
+
+    @playlist_name.setter
+    def playlist_name(self, playlist_name):
+        if playlist_name:
+            self.__playlist_name = playlist_name
+        else:
+            raise NameError("Поле названия плейлиста пустое")
+
+    @playlist_author.setter
+    def playlist_author(self, playlist_author):
+        if playlist_author:
+            self.__playlist_author = playlist_author
+        else:
+            raise NameError("Поле автора плейлиста пустое")
+
+    @playlist_description.setter
+    def playlist_description(self, playlist_description):
+        if playlist_description:
+            self.__playlist_description = playlist_description
+        else:
+            raise NameError("Поле описания плейлиста пустое")
 
     def append_track(self, track, position, previous_track=None):
         """Append track in the position"""
@@ -50,4 +87,3 @@ class PlayList(LinkedList):
     def current(self):
         """Return current composition"""
         return self.current_composition
-
