@@ -12,9 +12,10 @@ def main():
     linked_list.append_right(42)
     linked_list.append_right(43)
     linked_list.append_right(44)
-    linked_list.append_left(45)
     show_list(linked_list)
-    print(66 in linked_list)
+    linked_list.insert(42, 45)
+    show_list(linked_list)
+
 
 if __name__ == '__main__':
     main()

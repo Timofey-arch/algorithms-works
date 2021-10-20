@@ -8,6 +8,8 @@ class LinkedList:
         self.first_item = None
         self.last_item = None
         self.length = 0
+        self.iteration = None
+        self.count_of_iteration = 0
 
     def __create_list(self, item):
         new_item = LinkedListItem(None, item, None)
@@ -109,15 +111,30 @@ class LinkedList:
     def last(self):
         return self.last_item
 
+    def take_item(self, data):
+        iteration_item = self.first_item
+        for i in range(self.length):
+            if iteration_item.data == data:
+                return iteration_item
+            iteration_item = iteration_item.next_link
+        raise ValueError("Такого элемента не существует")
+
     def __len__(self):
         return self.length
 
     def __iter__(self):
-        iteration_item = self.first_item
-        return iteration_item
+        self.iteration = self.first_item
+        self.count_of_iteration = 1
+        return self
 
     def __next__(self):
-        pass
+        iteration_item = self.iteration
+        self.iteration = self.iteration.next_link
+        if self.count_of_iteration <= self.length:
+            self.count_of_iteration += 1
+        else:
+            raise StopIteration("Stop")
+        return iteration_item
 
     def __getitem__(self, index):
         if -self.length <= index <= -1:
