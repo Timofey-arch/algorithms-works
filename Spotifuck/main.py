@@ -13,8 +13,6 @@ def main():
     linked_list.append_right(43)
     linked_list.append_right(44)
     show_list(linked_list)
-    linked_list.insert(42, 45)
-    show_list(linked_list)
 
 
 if __name__ == '__main__':

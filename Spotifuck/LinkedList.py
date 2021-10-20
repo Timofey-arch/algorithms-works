@@ -12,12 +12,14 @@ class LinkedList:
         self.count_of_iteration = 0
 
     def __create_list(self, item):
+        """Initialize list"""
         new_item = LinkedListItem(None, item, None)
         self.first_item = new_item
         self.last_item = new_item
         self.length += 1
 
     def append_left(self, item):
+        """Append item in the begin of the list"""
         if self.first_item is None:
             self.__create_list(item)
             return
@@ -29,6 +31,7 @@ class LinkedList:
             return
 
     def append_right(self, item):
+        """Append item in the end of the list"""
         if self.first_item is None:
             self.__create_list(item)
             return
@@ -40,6 +43,7 @@ class LinkedList:
             return
 
     def remove(self, item):
+        """Remove item from the list"""
         iteration_item = self.first_item
         for i in range(self.length):
             if iteration_item == item:
@@ -69,6 +73,7 @@ class LinkedList:
         raise ValueError("Данного элемента в списке нет")
 
     def insert(self, previous_item, new_item):
+        """Insert item in the position after previous_item"""
         iteration_item = self.first_item
         if isinstance(new_item, Composition):
             new_item = LinkedListItem(None, new_item, None)
@@ -95,6 +100,7 @@ class LinkedList:
         raise ValueError("Элемент, после которого вы хотите вставить новый, не существует")
 
     def replace(self, previous_item, replaced_item):
+        """Replace item in the position after previous_item"""
         iteration_item = self.first_item
         for i in range(self.length):
             if iteration_item == replaced_item:
@@ -109,9 +115,11 @@ class LinkedList:
         raise ValueError("Элемент, после которого вы хотите переместить другой, не существует")
 
     def last(self):
+        """Return last item of the list"""
         return self.last_item
 
     def take_item(self, data):
+        """Take item from the list according to the data"""
         iteration_item = self.first_item
         for i in range(self.length):
             if iteration_item.data == data:
