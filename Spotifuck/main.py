@@ -1,11 +1,13 @@
 from LinkedList import LinkedList
 
+
 def show_list(linked_list):
     iteration_item = linked_list.first_item
     for i in range(linked_list.length):
         print(iteration_item.data)
         iteration_item = iteration_item.next_link
     print("-------------------------------------")
+
 
 def main():
     linked_list = LinkedList()

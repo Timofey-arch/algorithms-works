@@ -12,6 +12,7 @@ class PlayList(LinkedList):
         self.__playlist_author = playlist_author
         self.__playlist_description = playlist_description
         self.icon = icon
+        self.total_time = 0
 
     @property
     def playlist_name(self):
@@ -46,21 +47,33 @@ class PlayList(LinkedList):
         else:
             raise NameError("Поле описания плейлиста пустое")
 
+    def total_time(self):
+        """Return total time of the playlist"""
+        return self.total_time
+
+    def count_of_tracks(self):
+        """Return count of tracks in the playlist"""
+        return self.length
+
     def append_track(self, track, position, previous_track=None):
         """Append track in the position"""
         if position == "begin":
             self.append_left(track)
+            self.total_time += track.time()
         if position == "middle":
             if previous_track is not None:
                 self.insert(previous_track, track)
+                self.total_time += track.time()
             else:
                 raise AttributeError("Отсутствует параметр previous_track")
         if position == "end":
             self.append_right(track)
+            self.total_time += track.time()
 
     def delete_track(self, track):
         """Delete track from the playlist"""
         self.remove(track)
+        self.total_time -= track.time()
 
     def play_all(self, track):
         """Starts playing music from track"""

@@ -272,8 +272,7 @@ font: 9pt &quot;Arial Rounded MT Bold&quot;;</string>
       <item>
        <widget class="QWidget" name="BottomPanel" native="true">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(93, 93, 93);
-background-color: rgb(75, 75, 75);</string>
+         <string notr="true">background-color: rgb(75, 75, 75);</string>
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
@@ -336,8 +335,8 @@ background-color: rgb(75, 75, 75);</string>
                <item>
                 <widget class="QLabel" name="MusicName">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);
-font: 8pt &quot;Arial Rounded MT Bold&quot;;</string>
+                  <string notr="true">background-color: rgb(130, 130, 130);
+font: 10pt &quot;Arial Rounded MT Bold&quot;;</string>
                  </property>
                  <property name="text">
                   <string>Sacrifice</string>
@@ -347,8 +346,8 @@ font: 8pt &quot;Arial Rounded MT Bold&quot;;</string>
                <item>
                 <widget class="QLabel" name="AuthorName">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);
-font: 8pt &quot;Arial Rounded MT Bold&quot;;</string>
+                  <string notr="true">background-color: rgb(130, 130, 130);
+font: 10pt &quot;Arial Rounded MT Bold&quot;;</string>
                  </property>
                  <property name="text">
                   <string>Guts</string>
