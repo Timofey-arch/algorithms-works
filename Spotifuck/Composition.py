@@ -3,11 +3,12 @@
 
 class Composition:
 
-    def __init__(self, music, music_name, description, author):
+    def __init__(self, music, music_name, description, author, icon=None):
         self.music = music
         self.__music_name = music_name
         self.__description = description
         self.__author = author
+        self.icon = icon
 
     @property
     def music_name(self):

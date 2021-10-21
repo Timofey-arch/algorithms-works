@@ -58,6 +58,12 @@
               <property name="text">
                <string>Add playlist</string>
               </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeat">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -169,6 +175,12 @@ font: 10pt &quot;Arial Rounded MT Bold&quot;;</string>
            <layout class="QHBoxLayout" name="PlayListInformation" stretch="1,0">
             <item>
              <widget class="QLabel" name="PlayListIcon">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>170</width>
@@ -216,7 +228,7 @@ font: 24pt &quot;Arial Rounded MT Bold&quot;;</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="PlayListdescription">
+               <widget class="QLabel" name="PlayListDescription">
                 <property name="styleSheet">
                  <string notr="true">background-color: rgb(93, 93, 93);
 font: 8pt &quot;Arial Rounded MT Bold&quot;;</string>
@@ -276,7 +288,7 @@ font: 9pt &quot;Arial Rounded MT Bold&quot;;</string>
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
-          <layout class="QHBoxLayout" name="MusicInformation_2" stretch="4,6,3">
+          <layout class="QHBoxLayout" name="MusicInformationAndControl" stretch="4,6,3">
            <item>
             <layout class="QVBoxLayout" name="MusicInformation">
              <item>
