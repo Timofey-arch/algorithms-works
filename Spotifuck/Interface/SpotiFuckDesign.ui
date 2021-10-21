@@ -222,7 +222,7 @@ font: 24pt &quot;Arial Rounded MT Bold&quot;;</string>
 font: 8pt &quot;Arial Rounded MT Bold&quot;;</string>
                 </property>
                 <property name="text">
-                 <string>author, count of tracks, main time</string>
+                 <string>author, count of tracks, total time</string>
                 </property>
                </widget>
               </item>
@@ -392,10 +392,10 @@ font: 10pt &quot;Arial Rounded MT Bold&quot;;</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>SpotiFuckButtonsImages/pause.png</normaloff>
+                   <normaloff>SpotiFuckButtonsImages/play.png</normaloff>
                    <disabledoff>SpotiFuckButtonsImages/play.png</disabledoff>
                    <activeoff>SpotiFuckButtonsImages/play.png</activeoff>
-                   <activeon>SpotiFuckButtonsImages/pause.png</activeon>SpotiFuckButtonsImages/pause.png</iconset>
+                   <activeon>SpotiFuckButtonsImages/pause.png</activeon>SpotiFuckButtonsImages/play.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -513,13 +513,17 @@ font: 10pt &quot;Arial Rounded MT Bold&quot;;</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>SpotiFuckButtonsImages/mute.png</normaloff>SpotiFuckButtonsImages/mute.png</iconset>
+                   <normaloff>SpotiFuckButtonsImages/volume.png</normaloff>
+                   <normalon>SpotiFuckButtonsImages/mute.png</normalon>SpotiFuckButtonsImages/volume.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
                    <width>40</width>
                    <height>40</height>
                   </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <property name="flat">
                   <bool>true</bool>

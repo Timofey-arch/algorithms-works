@@ -1,20 +1,31 @@
+from Composition import Composition
 from LinkedList import LinkedList
+from PyQt5 import QtWidgets
+import sys
+from Interface.SpotiFuckDesign import Ui_SpotiFuck
+from Interface.AddPlaylistWindow import Ui_AddPlayListWindow
 
 
-def show_list(linked_list):
-    iteration_item = linked_list.first_item
-    for i in range(linked_list.length):
-        print(iteration_item.data)
-        iteration_item = iteration_item.next_link
-    print("-------------------------------------")
+class SpotiFuckMainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(SpotiFuckMainWindow, self).__init__()
+        self.ui = Ui_SpotiFuck()
+        self.ui.setupUi(self)
+
+
+class AddPlaylistWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(AddPlaylistWindow, self).__init__()
+        self.ui = Ui_AddPlayListWindow()
+        self.ui.setupUi(self)
 
 
 def main():
-    linked_list = LinkedList()
-    linked_list.append_right(42)
-    linked_list.append_right(43)
-    linked_list.append_right(44)
-    show_list(linked_list)
+    app = QtWidgets.QApplication([])
+    application = SpotiFuckMainWindow()
+    application.show()
+
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':
