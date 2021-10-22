@@ -5,10 +5,10 @@ from LinkedList import LinkedList
 
 class PlayList(LinkedList):
     playlist_number = 0
-    standard_icon_path = r"C:\Users\user\Desktop\Алгоритмы\Spotifuck\Interface\SpotiFuckButtonsImages" \
-                         "\playlist_standart_icon.png"
+    standard_icon_path = r"C:\Users\user\Desktop\Алгоритмы\
+                           Spotifuck\Interface\SpotiFuckButtonsImages\playlist_standard_icon.png"
 
-    def __init__(self, playlist_name, playlist_author, icon=None):
+    def __init__(self, playlist_name, playlist_author):
         super().__init__()
         self.current_composition = None
         self.__playlist_name = playlist_name
