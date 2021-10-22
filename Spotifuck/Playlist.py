@@ -4,13 +4,15 @@ from LinkedList import LinkedList
 
 
 class PlayList(LinkedList):
+    playlist_number = 1
+    standard_icon_path = r"C:\Users\user\Desktop\Алгоритмы\Spotifuck\Interface\SpotiFuckButtonsImages" \
+                         "\playlist_standart_icon.png"
 
-    def __init__(self, playlist_name, playlist_description, playlist_author, icon=None):
+    def __init__(self, playlist_name, playlist_author, icon=None):
         super().__init__()
         self.current_composition = None
         self.__playlist_name = playlist_name
         self.__playlist_author = playlist_author
-        self.__playlist_description = playlist_description
         self.icon = icon
         self.total_time = 0
 
@@ -22,30 +24,25 @@ class PlayList(LinkedList):
     def playlist_author(self):
         return self.__playlist_author
 
-    @property
-    def playlist_description(self):
-        return self.__playlist_description
-
     @playlist_name.setter
     def playlist_name(self, playlist_name):
         if playlist_name:
             self.__playlist_name = playlist_name
         else:
-            raise NameError("Поле названия плейлиста пустое")
+            self.__playlist_name = "BORING_PLAYLIST_NAME"
 
     @playlist_author.setter
     def playlist_author(self, playlist_author):
         if playlist_author:
             self.__playlist_author = playlist_author
         else:
-            raise NameError("Поле автора плейлиста пустое")
+            self.__playlist_author = "BORING_PLAYLIST_AUTHOR"
 
-    @playlist_description.setter
-    def playlist_description(self, playlist_description):
-        if playlist_description:
-            self.__playlist_description = playlist_description
+    def set_icon(self, file_path):
+        if file_path:
+            self.icon = file_path
         else:
-            raise NameError("Поле описания плейлиста пустое")
+            self.icon = self.standard_icon_path
 
     def total_time(self):
         """Return total time of the playlist"""

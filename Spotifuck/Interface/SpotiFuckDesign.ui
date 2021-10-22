@@ -102,11 +102,6 @@
              <string notr="true">background-color: rgb(93, 93, 93);
 font: 10pt &quot;Arial Rounded MT Bold&quot;;</string>
             </property>
-            <item>
-             <property name="text">
-              <string>Eternal Rage</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>
@@ -260,21 +255,6 @@ font: 8pt &quot;Arial Rounded MT Bold&quot;;</string>
              <string notr="true">background-color: rgb(130, 130, 130);
 font: 9pt &quot;Arial Rounded MT Bold&quot;;</string>
             </property>
-            <item>
-             <property name="text">
-              <string>Eclipse</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Griffit</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dragonslayer</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>

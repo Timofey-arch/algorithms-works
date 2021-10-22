@@ -99,21 +99,6 @@ class LinkedList:
                 iteration_item = iteration_item.next_link
         raise ValueError("Элемент, после которого вы хотите вставить новый, не существует")
 
-    def replace(self, previous_item, replaced_item):
-        """Replace item in the position after previous_item"""
-        iteration_item = self.first_item
-        for i in range(self.length):
-            if iteration_item == replaced_item:
-                if previous_item == self.last_item and replaced_item == self.first_item:
-                    pass
-                if previous_item == self.last_item:
-                    pass
-                else:
-                    pass
-            else:
-                iteration_item = iteration_item.next_link
-        raise ValueError("Элемент, после которого вы хотите переместить другой, не существует")
-
     def last(self):
         """Return last item of the list"""
         return self.last_item
