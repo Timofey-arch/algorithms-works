@@ -59,8 +59,8 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         self.ui.VolumeAbleDisable.clicked.connect(self.volume_able_disable)
         self.ui.VolumePlus.clicked.connect(self.volume_plus)
         # Highlights
-        # self.ui.PlayListList.itemClicked.connect(self.show_playlist_parameters())
-        self.ui.MusicFromPlaylistList.itemClicked.connect(self.show_track_parameters)
+        """self.ui.PlayListList.itemClicked.connect(self.show_playlist_parameters())
+        self.ui.MusicFromPlaylistList.itemClicked.connect(self.show_track_parameters)"""
 
     # Works
     def add_playlist(self):
@@ -77,7 +77,6 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         list_widget_item.setData(new_playlist.playlist_number, new_playlist)
         self.ui.PlayListList.addItem(str(new_playlist.playlist_number) + " - " +
                                      list_widget_item.data(new_playlist.playlist_number).playlist_name)
-        PlayList.playlist_number += 1
 
     # Not works yet
     def delete_playlist(self):
@@ -119,6 +118,7 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
                                f"{playlist.total_time()} seconds"
         self.ui.PlayListDescription.setText(playlist_information)
         self.ui.PlayListName.setText(playlist.playlist_name)
+        self.ui.PlayListIcon.pixmap(playlist.icon)
 
     def show_track_parameters(self):
         pass

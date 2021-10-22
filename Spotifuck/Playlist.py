@@ -4,7 +4,7 @@ from LinkedList import LinkedList
 
 
 class PlayList(LinkedList):
-    playlist_number = 1
+    playlist_number = 0
     standard_icon_path = r"C:\Users\user\Desktop\Алгоритмы\Spotifuck\Interface\SpotiFuckButtonsImages" \
                          "\playlist_standart_icon.png"
 
@@ -13,8 +13,9 @@ class PlayList(LinkedList):
         self.current_composition = None
         self.__playlist_name = playlist_name
         self.__playlist_author = playlist_author
-        self.icon = icon
+        self.icon = PlayList.standard_icon_path
         self.total_time = 0
+        PlayList.playlist_number += 1
 
     @property
     def playlist_name(self):
@@ -39,6 +40,7 @@ class PlayList(LinkedList):
             self.__playlist_author = "BORING_PLAYLIST_AUTHOR"
 
     def set_icon(self, file_path):
+        """Sets image.ico to playlist"""
         if file_path:
             self.icon = file_path
         else:
