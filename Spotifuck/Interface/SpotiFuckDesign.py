@@ -15,7 +15,7 @@ class Ui_SpotiFuck(object):
     def setupUi(self, SpotiFuck):
         SpotiFuck.setObjectName("SpotiFuck")
         SpotiFuck.resize(816, 634)
-        icon = QtGui.QIcon.fromTheme("SpotiFuckLogo")
+        icon = QtGui.QIcon.fromTheme("SpotiFuckLogo.png")
         SpotiFuck.setWindowIcon(icon)
         SpotiFuck.setStatusTip("")
         SpotiFuck.setAutoFillBackground(False)

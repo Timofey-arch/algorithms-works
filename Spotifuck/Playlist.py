@@ -42,37 +42,25 @@ class PlayList(LinkedList):
     def set_icon(self, file_path):
         """Sets image.ico to playlist"""
         if file_path:
-            self.icon = file_path
+            self.icon = rf"{file_path}"
         else:
             self.icon = self.standard_icon_path
-
-    def total_time(self):
-        """Return total time of the playlist"""
-        return self.total_time
 
     def count_of_tracks(self):
         """Return count of tracks in the playlist"""
         return self.length
 
-    def append_track(self, track, position, previous_track=None):
+    def append_track(self, position, track):
         """Append track in the position"""
-        if position == "begin":
-            self.append_left(track)
-            self.total_time += track.time()
-        if position == "middle":
-            if previous_track is not None:
-                self.insert(previous_track, track)
-                self.total_time += track.time()
-            else:
-                raise AttributeError("Отсутствует параметр previous_track")
-        if position == "end":
+        if position == self.last_item:
             self.append_right(track)
-            self.total_time += track.time()
+        else:
+            self.insert(position, track)
 
     def delete_track(self, track):
         """Delete track from the playlist"""
         self.remove(track)
-        self.total_time -= track.time()
+        # self.total_time -= track.time()
 
     def play_all(self, track):
         """Starts playing music from track"""
@@ -81,20 +69,16 @@ class PlayList(LinkedList):
     def next_track(self):
         """Starts next track"""
         self.current_composition = self.current_composition.next_link
-        self.current_composition.data.play()
+        self.current_composition.data.music.play()
 
     def previous_track(self):
         """Starts previous track"""
         self.current_composition = self.current_composition.previous_link
-        self.current_composition.data.play()
+        self.current_composition.data.music.play()
 
     def pause_track(self):
         """Pause/Play track"""
-        pause_flag = False
-        if not pause_flag:
-            self.current_composition.data.pause()
-        else:
-            self.current_composition.data.unpause()
+        self.current_composition.data.music.play()
 
     def current(self):
         """Return current composition"""

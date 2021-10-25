@@ -13,9 +13,8 @@ class LinkedList:
 
     def __create_list(self, item):
         """Initialize list"""
-        new_item = LinkedListItem(None, item, None)
-        self.first_item = new_item
-        self.last_item = new_item
+        self.first_item = item
+        self.last_item = item
         self.length += 1
 
     def append_left(self, item):
@@ -24,9 +23,11 @@ class LinkedList:
             self.__create_list(item)
             return
         else:
-            new_item = LinkedListItem(self.first_item, item, self.last_item)
-            self.first_item.previous_link = new_item
-            self.first_item = new_item
+            self.first_item.previous_link = item
+            item.next_link = self.first_item
+            self.first_item = item
+            self.first_item.previous_link = self.last_item
+            self.last_item.next_link = self.first_item
             self.length += 1
             return
 
@@ -36,15 +37,22 @@ class LinkedList:
             self.__create_list(item)
             return
         else:
-            new_item = LinkedListItem(self.first_item, item, self.last_item)
-            self.last_item.next_link = new_item
-            self.last_item = new_item
+            self.last_item.next_link = item
+            item.previous_link = self.last_item
+            self.first_item.previous_link = item
+            self.last_item = item
+            self.last_item.next_link = self.first_item
             self.length += 1
             return
 
     def remove(self, item):
         """Remove item from the list"""
         iteration_item = self.first_item
+        if self.first_item == self.last_item:
+            self.first_item = None
+            self.last_item = None
+            self.length = 0
+            return
         for i in range(self.length):
             if iteration_item == item:
                 if iteration_item == self.first_item:
@@ -62,7 +70,7 @@ class LinkedList:
                     self.length -= 1
                     return
                 else:
-                    previous_item = iteration_item.get_previous_link
+                    previous_item = iteration_item.previous_link
                     next_item = iteration_item.next_link
                     previous_item.next_link = next_item
                     next_item.previous_link = previous_item
@@ -75,24 +83,22 @@ class LinkedList:
     def insert(self, previous_item, new_item):
         """Insert item in the position after previous_item"""
         iteration_item = self.first_item
-        if isinstance(new_item, Composition):
-            new_item = LinkedListItem(None, new_item, None)
         for i in range(self.length):
             if iteration_item == previous_item:
                 if iteration_item == self.last_item:
                     self.last_item.next_link = new_item
                     new_item.previous_link = self.last_item
-                    new_item.next_link = self.first_item
                     self.last_item = new_item
+                    self.last_item.next_link = self.first_item
                     self.first_item.previous_link = self.last_item
                     self.length += 1
                     return
                 else:
-                    new_item = previous_item.next_link
-                    previous_item.next_link = new_item
-                    new_item.previous_link = new_item
-                    new_item.next_link = new_item
+                    next_item = previous_item.next_link
+                    new_item.next_link = next_item
                     new_item.previous_link = previous_item
+                    previous_item.next_link = new_item
+                    next_item.previous_link = new_item
                     self.length += 1
                     return
             else:
