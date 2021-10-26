@@ -3,6 +3,7 @@ from Composition import Composition
 from LinkedListItem import LinkedListItem
 
 
+
 class LinkedList:
     def __init__(self):
         self.first_item = None
@@ -104,6 +105,18 @@ class LinkedList:
             else:
                 iteration_item = iteration_item.next_link
         raise ValueError("Элемент, после которого вы хотите вставить новый, не существует")
+
+    def replace(self, previous_item, item):
+        iteration_item = self.first_item
+        replaced_item = item
+        for i in range(self.length):
+            if iteration_item == item:
+                self.remove(item)
+                self.insert(previous_item, replaced_item)
+                return
+            else:
+                iteration_item = iteration_item.next_link
+        raise ValueError("Элемент после которого вы хотите переместить, не существует")
 
     def last(self):
         """Return last item of the list"""

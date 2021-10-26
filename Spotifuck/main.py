@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QListWidgetItem, QAction, QFileDialog
 
 from Composition import Composition
@@ -43,14 +43,22 @@ class AddMusicWindow(QtWidgets.QDialog):
         self.ui.setupUi(self)
         self.ui.Ok.clicked.connect(self.accept)
         self.ui.Cancel.clicked.connect(self.reject)
-        self.ui.ChoosePath.clicked.connect(self.choose_path)
+        self.ui.ChooseMusicFilePath.clicked.connect(self.choose_music_file_path)
+        self.ui.ChoosePicturePath.clicked.connect(self.choose_picture_file_path)
 
-    def choose_path(self):
+    def choose_music_file_path(self):
         filename, filetype = QFileDialog.getOpenFileName(self,
                                                          "Выбрать файл",
                                                          ".",
                                                          "MP3 Files(*.mp3);;WAV File(*.wav);; All Files(*)")
-        self.ui.FilePath.setText(filename)
+        self.ui.MusicFilePath.setText(filename)
+
+    def choose_picture_file_path(self):
+        filename, filetype = QFileDialog.getOpenFileName(self,
+                                                         "Выбрать файл",
+                                                         ".",
+                                                         "PNG Files(*.png);;JPEG File(*.jpg);; All Files(*)")
+        self.ui.PictureFilePath.setText(filename)
 
 
 class ErrorWindow(QtWidgets.QDialog):
@@ -123,10 +131,15 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
     def add_playlist(self):
         add_playlist_window = AddPlaylistWindow()
         add_playlist_window.exec()
+
         new_playlist = PlayList(None, None)
         new_playlist.playlist_name = add_playlist_window.ui.InputName.text()
         new_playlist.playlist_author = add_playlist_window.ui.InputAuthor.text()
-        new_playlist.set_icon(add_playlist_window.ui.FilePath.text())
+        if add_playlist_window.ui.FilePath.text():
+            new_playlist.set_icon(add_playlist_window.ui.FilePath.text())
+        else:
+            new_playlist.set_icon(PlayList.standard_playlist_icon)
+
         list_widget_item = QListWidgetItem()
         list_widget_item.setData(self.PLAYLIST_ROLE, new_playlist)
         list_widget_item.setText(new_playlist.playlist_name)
@@ -146,15 +159,24 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         if not self.ui.PlayListList.currentItem():
             self.create_error_window("First, select a playlist to add music")
             return
+
         add_music_window = AddMusicWindow()
         add_music_window.exec()
-        if add_music_window.ui.Ok.clicked and not add_music_window.ui.FilePath.text():
+
+        if add_music_window.ui.Ok.clicked and not add_music_window.ui.MusicFilePath.text():
             self.create_error_window("Choose music file")
             return
+
         playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
-        composition = Composition(add_music_window.ui.FilePath.text())
+
+        composition = Composition(add_music_window.ui.MusicFilePath.text())
         composition.music_name = add_music_window.ui.InputName.text()
         composition.author = add_music_window.ui.InputAuthor.text()
+        if add_music_window.ui.PictureFilePath.text():
+            composition.icon = add_music_window.ui.PictureFilePath.text()
+        else:
+            composition.icon = Composition.standard_composition_icon
+
         playlist_item = LinkedListItem(None, composition, None)
         music_from_playlist_item = QListWidgetItem()
         music_from_playlist_item.setData(self.LINKED_LIST_ITEM_ROLE, playlist_item)
@@ -176,6 +198,7 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         self.ui.MusicPicture.clear()
         self.ui.MusicName.clear()
         self.ui.AuthorName.clear()
+        self.show_playlist_parameters()
 
     def insert_music_to_playlist(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
@@ -187,9 +210,13 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         add_music_window = AddMusicWindow()
         add_music_window.exec()
 
-        composition = Composition(add_music_window.ui.FilePath.text())
+        composition = Composition(add_music_window.ui.MusicFilePath.text())
         composition.music_name = add_music_window.ui.InputName.text()
         composition.author = add_music_window.ui.InputAuthor.text()
+        if add_music_window.ui.PictureFilePath.text():
+            composition.icon = add_music_window.ui.PictureFilePath.text()
+        else:
+            composition.icon = Composition.standard_composition_icon
 
         new_item = LinkedListItem(None, composition, None)
         music_from_playlist_item = QListWidgetItem()
@@ -230,8 +257,8 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         playlist_name = playlist.playlist_name
         self.ui.PlayListName.setText(playlist_name)
         self.ui.PlayListDescription.setText(playlist_description)
-        # icon = QIcon.fromTheme(playlist.icon)
-        # self.ui.PlayListIcon.setPixmap(icon)
+        icon = QPixmap(playlist.icon)
+        self.ui.PlayListIcon.setPixmap(icon)
         for i in range(playlist.length):
             composition = QListWidgetItem()
             track = playlist[i]
@@ -242,8 +269,10 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
     def show_track_parameters(self):
         if self.ui.PlayPause.clicked and self.ui.MusicFromPlaylistList.currentItem():
             current_track = self.ui.MusicFromPlaylistList.currentItem().data(self.LINKED_LIST_ITEM_ROLE).data
+            icon = QPixmap(current_track.icon)
             self.ui.MusicName.setText(current_track.music_name)
             self.ui.AuthorName.setText(current_track.author)
+            self.ui.MusicPicture.setPixmap(icon)
 
 
 def main():

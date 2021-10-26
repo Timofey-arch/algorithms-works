@@ -4,18 +4,14 @@ from LinkedList import LinkedList
 
 
 class PlayList(LinkedList):
-    playlist_number = 0
-    standard_icon_path = r"C:\Users\user\Desktop\Алгоритмы\
-                           Spotifuck\Interface\SpotiFuckButtonsImages\playlist_standard_icon.png"
+    standard_playlist_icon = r"Interface\SpotiFuckButtonsImages\playlist_standard_icon.png"
 
     def __init__(self, playlist_name, playlist_author):
         super().__init__()
         self.current_composition = None
         self.__playlist_name = playlist_name
         self.__playlist_author = playlist_author
-        self.icon = PlayList.standard_icon_path
         self.total_time = 0
-        PlayList.playlist_number += 1
 
     @property
     def playlist_name(self):
@@ -41,10 +37,7 @@ class PlayList(LinkedList):
 
     def set_icon(self, file_path):
         """Sets image.ico to playlist"""
-        if file_path:
-            self.icon = rf"{file_path}"
-        else:
-            self.icon = self.standard_icon_path
+        self.icon = file_path
 
     def count_of_tracks(self):
         """Return count of tracks in the playlist"""

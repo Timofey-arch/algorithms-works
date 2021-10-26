@@ -1,19 +1,13 @@
 """Composition class, containing music file"""
-from PyQt5.QtCore import QUrl
-from pygame import mixer
 
 
 class Composition:
-    composition_number = 0
-    standard_composition_icon = r"C:\Users\user\Desktop\
-                                Алгоритмы\Spotifuck\Interface\SpotiFuckButtonsImage\composition_standard_icon.png"
+    standard_composition_icon = r"Interface\SpotiFuckButtonsImages\composition_standard_icon.png"
 
     def __init__(self, music, music_name=None, author=None):
-        self.music = mixer.Sound(music)
+        self.music = music
         self.__music_name = music_name
         self.__author = author
-        self.icon = Composition.standard_composition_icon
-        Composition.composition_number += 1
 
     @property
     def music_name(self):
