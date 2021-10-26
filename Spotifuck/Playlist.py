@@ -1,6 +1,13 @@
 """Playlist class, realizing... music playlist?
     I don't know how to describe it by another way"""
+import pygame.event
+
 from LinkedList import LinkedList
+import pygame
+
+pygame.init()
+STOPPED_PLAYING = pygame.USEREVENT + 1
+pygame.mixer.music.set_endevent(STOPPED_PLAYING)
 
 
 class PlayList(LinkedList):
@@ -43,9 +50,11 @@ class PlayList(LinkedList):
         """Return count of tracks in the playlist"""
         return self.length
 
-    def append_track(self, position, track):
+    def append_track(self, track, position=None):
         """Append track in the position"""
-        if position == self.last_item:
+        if self.length == 0:
+            self.current_composition = track
+        if position is None:
             self.append_right(track)
         else:
             self.insert(position, track)
@@ -53,25 +62,32 @@ class PlayList(LinkedList):
     def delete_track(self, track):
         """Delete track from the playlist"""
         self.remove(track)
-        # self.total_time -= track.time()
 
     def play_all(self, track):
         """Starts playing music from track"""
-        pass
+        self.current_composition = track
+        pygame.mixer.music.load(self.current_composition.data.music)
+        pygame.mixer.music.play()
+        pygame.mixer.music.queue(self.current_composition.next_link.data.music)
 
     def next_track(self):
         """Starts next track"""
         self.current_composition = self.current_composition.next_link
-        self.current_composition.data.music.play()
+        pygame.mixer.music.load(self.current_composition.data.music)
+        pygame.mixer.music.play()
 
     def previous_track(self):
         """Starts previous track"""
         self.current_composition = self.current_composition.previous_link
-        self.current_composition.data.music.play()
+        pygame.mixer.music.load(self.current_composition.data.music)
+        pygame.mixer.music.play()
 
-    def pause_track(self):
+    def play_pause(self, current_composition):
         """Pause/Play track"""
-        self.current_composition.data.music.play()
+        if pygame.mixer.music.get_busy():
+            pygame.mixer.music.pause()
+        else:
+            pygame.mixer.music.unpause()
 
     def current(self):
         """Return current composition"""

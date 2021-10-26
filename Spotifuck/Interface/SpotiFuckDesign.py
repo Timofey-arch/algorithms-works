@@ -15,7 +15,7 @@ class Ui_SpotiFuck(object):
     def setupUi(self, SpotiFuck):
         SpotiFuck.setObjectName("SpotiFuck")
         SpotiFuck.resize(816, 634)
-        icon = QtGui.QIcon.fromTheme("SpotiFuckLogo.png")
+        icon = QtGui.QIcon.fromTheme("SpotiFuckLogo")
         SpotiFuck.setWindowIcon(icon)
         SpotiFuck.setStatusTip("")
         SpotiFuck.setAutoFillBackground(False)
@@ -213,39 +213,6 @@ class Ui_SpotiFuck(object):
         self.Next.setObjectName("Next")
         self.MusicControlButtons.addWidget(self.Next)
         self.MusicControlPanel.addLayout(self.MusicControlButtons)
-        self.MusicSlider = QtWidgets.QHBoxLayout()
-        self.MusicSlider.setObjectName("MusicSlider")
-        self.CurrentMusicTime = QtWidgets.QLabel(self.BottomPanel)
-        self.CurrentMusicTime.setObjectName("CurrentMusicTime")
-        self.MusicSlider.addWidget(self.CurrentMusicTime)
-        self.horizontalSlider = QtWidgets.QSlider(self.BottomPanel)
-        self.horizontalSlider.setStyleSheet("QSlider{\n"
-"                background: rgb(75, 75, 75);\n"
-"            }\n"
-"            QSlider::groove:horizontal {  \n"
-"                height: 10px;\n"
-"                margin: 0px;\n"
-"                border-radius: 5px;\n"
-"                background: #B0AEB1;\n"
-"            }\n"
-"            QSlider::handle:horizontal {\n"
-"                background: #fff;\n"
-"                border: 1px solid #E3DEE2;\n"
-"                width: 17px;\n"
-"                margin: -5px 0; \n"
-"                border-radius: 8px;\n"
-"            }\n"
-"            QSlider::sub-page:qlineargradient {\n"
-"                background: #3B99FC;\n"
-"                border-radius: 5px;\n"
-"            }")
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.horizontalSlider.setObjectName("horizontalSlider")
-        self.MusicSlider.addWidget(self.horizontalSlider)
-        self.MaxMusicTime = QtWidgets.QLabel(self.BottomPanel)
-        self.MaxMusicTime.setObjectName("MaxMusicTime")
-        self.MusicSlider.addWidget(self.MaxMusicTime)
-        self.MusicControlPanel.addLayout(self.MusicSlider)
         self.MusicInformationAndControl.addLayout(self.MusicControlPanel)
         self.VolumeControl = QtWidgets.QVBoxLayout()
         self.VolumeControl.setObjectName("VolumeControl")
@@ -281,30 +248,6 @@ class Ui_SpotiFuck(object):
         self.VolumePlus.setObjectName("VolumePlus")
         self.VolumeControlPanel.addWidget(self.VolumePlus)
         self.VolumeControl.addLayout(self.VolumeControlPanel)
-        self.VolumeSlider = QtWidgets.QSlider(self.BottomPanel)
-        self.VolumeSlider.setStyleSheet("QSlider{\n"
-"                background: rgb(75, 75, 75);\n"
-"            }\n"
-"            QSlider::groove:horizontal {  \n"
-"                height: 10px;\n"
-"                margin: 0px;\n"
-"                border-radius: 5px;\n"
-"                background: #B0AEB1;\n"
-"            }\n"
-"            QSlider::handle:horizontal {\n"
-"                background: #fff;\n"
-"                border: 1px solid #E3DEE2;\n"
-"                width: 17px;\n"
-"                margin: -5px 0; \n"
-"                border-radius: 8px;\n"
-"            }\n"
-"            QSlider::sub-page:qlineargradient {\n"
-"                background: #3B99FC;\n"
-"                border-radius: 5px;\n"
-"            }")
-        self.VolumeSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.VolumeSlider.setObjectName("VolumeSlider")
-        self.VolumeControl.addWidget(self.VolumeSlider)
         self.MusicInformationAndControl.addLayout(self.VolumeControl)
         self.MusicInformationAndControl.setStretch(0, 4)
         self.MusicInformationAndControl.setStretch(1, 6)
@@ -344,8 +287,6 @@ class Ui_SpotiFuck(object):
         self.PlayListDescription.setText(_translate("SpotiFuck", "author, count of tracks, total time"))
         self.MusicName.setText(_translate("SpotiFuck", "Sacrifice"))
         self.AuthorName.setText(_translate("SpotiFuck", "Guts"))
-        self.CurrentMusicTime.setText(_translate("SpotiFuck", "0.00"))
-        self.MaxMusicTime.setText(_translate("SpotiFuck", "3.35"))
         self.menuHelp_2.setTitle(_translate("SpotiFuck", "Help"))
         self.actionAbout_SpotiFuck.setText(_translate("SpotiFuck", "About SpotiFuck"))
         self.actionSpotiFuck_Help.setText(_translate("SpotiFuck", "SpotiFuck Help"))

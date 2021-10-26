@@ -1,3 +1,4 @@
+import pygame
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QListWidgetItem, QAction, QFileDialog
@@ -12,11 +13,7 @@ from Interface.AddPlaylistWindow import Ui_AddPlayListWindow
 from Interface.ErrorWindow import Ui_ErrorWindow
 from Interface.AddMusicWindow import Ui_AddMusicWindow
 
-
-def show_playlist_items(playlist):
-    for i in range(playlist.length):
-        print(playlist[i].data.music_name)
-    print("-----------------------------")
+pygame.init()
 
 
 class AddPlaylistWindow(QtWidgets.QDialog):
@@ -180,11 +177,10 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         playlist_item = LinkedListItem(None, composition, None)
         music_from_playlist_item = QListWidgetItem()
         music_from_playlist_item.setData(self.LINKED_LIST_ITEM_ROLE, playlist_item)
-        music_from_playlist_item.setText(composition.author + " - " + composition.music_name)
-        playlist.append_right(playlist_item)
-        show_playlist_items(playlist)
+        music_from_playlist_item.setText(composition.music_name + " - " + composition.author)
+        playlist.append_track(playlist_item)
         self.ui.MusicFromPlaylistList.addItem(music_from_playlist_item)
-        playlist_description = f"{playlist.playlist_author}, {playlist.length} track(s), {playlist.total_time} seconds"
+        playlist_description = f"{playlist.playlist_author}, {playlist.length} track(s)"
         self.ui.PlayListDescription.setText(playlist_description)
 
     def delete_music_from_playlist(self):
@@ -199,6 +195,11 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         self.ui.MusicName.clear()
         self.ui.AuthorName.clear()
         self.show_playlist_parameters()
+        if pygame.mixer.music.get_busy():
+            icon = QPixmap(playlist.current_composition.data.icon)
+            self.ui.MusicName.setText(playlist.current_composition.data.music_name)
+            self.ui.AuthorName.setText(playlist.current_composition.data.author)
+            self.ui.MusicPicture.setPixmap(icon)
 
     def insert_music_to_playlist(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
@@ -221,39 +222,62 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         new_item = LinkedListItem(None, composition, None)
         music_from_playlist_item = QListWidgetItem()
         music_from_playlist_item.setData(self.LINKED_LIST_ITEM_ROLE, new_item)
-        music_from_playlist_item.setText(composition.author + " - " + composition.music_name)
-        playlist.append_track(previous_item, new_item)
-        show_playlist_items(playlist)
+        music_from_playlist_item.setText(composition.music_name + " - " + composition.author)
+        playlist.append_track(new_item, previous_item)
         self.show_playlist_parameters()
 
     def pause_play_track(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
+        counter_of_clicks = 0
+        if self.ui.PlayPause.clicked:
+            counter_of_clicks += 1
+        playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
+        composition = self.ui.MusicFromPlaylistList.currentItem().data(self.LINKED_LIST_ITEM_ROLE)
+        playlist.play_pause(composition)
 
     def previous_track(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
+        playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
+        playlist.previous_track()
+        icon = QPixmap(playlist.current_composition.data.icon)
+        self.ui.MusicName.setText(playlist.current_composition.data.music_name)
+        self.ui.AuthorName.setText(playlist.current_composition.data.author)
+        self.ui.MusicPicture.setPixmap(icon)
 
     def next_track(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
+        playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
+        playlist.next_track()
+        icon = QPixmap(playlist.current_composition.data.icon)
+        self.ui.MusicName.setText(playlist.current_composition.data.music_name)
+        self.ui.AuthorName.setText(playlist.current_composition.data.author)
+        self.ui.MusicPicture.setPixmap(icon)
 
     def volume_minus(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
+        pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() - 0.05)
 
     def volume_able_disable(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
+        if self.ui.VolumeAbleDisable.isChecked():
+            pygame.mixer.music.set_volume(0)
+        else:
+            pygame.mixer.music.set_volume(1)
 
     def volume_plus(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
+        pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() + 0.05)
 
     def show_playlist_parameters(self):
         self.ui.MusicFromPlaylistList.clear()
         playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
-        playlist_description = f"{playlist.playlist_author}, {playlist.length} track(s), {playlist.total_time} seconds"
+        playlist_description = f"{playlist.playlist_author}, {playlist.length} track(s)"
         playlist_name = playlist.playlist_name
         self.ui.PlayListName.setText(playlist_name)
         self.ui.PlayListDescription.setText(playlist_description)
