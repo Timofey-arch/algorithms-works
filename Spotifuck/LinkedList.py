@@ -14,6 +14,8 @@ class LinkedList:
 
     def __create_list(self, item):
         """Initialize list"""
+        if not isinstance(item, LinkedListItem):
+            item = LinkedListItem(None, item, None)
         self.first_item = item
         self.last_item = item
         self.length += 1
@@ -24,6 +26,8 @@ class LinkedList:
             self.__create_list(item)
             return
         else:
+            if not isinstance(item, LinkedListItem):
+                item = LinkedListItem(None, item, None)
             self.first_item.previous_link = item
             item.next_link = self.first_item
             self.first_item = item
@@ -38,6 +42,8 @@ class LinkedList:
             self.__create_list(item)
             return
         else:
+            if not isinstance(item, LinkedListItem):
+                item = LinkedListItem(None, item, None)
             self.last_item.next_link = item
             item.previous_link = self.last_item
             self.first_item.previous_link = item
@@ -49,6 +55,8 @@ class LinkedList:
     def remove(self, item):
         """Remove item from the list"""
         iteration_item = self.first_item
+        if not isinstance(item, LinkedListItem):
+            item = self.take_item(item)
         if self.first_item == self.last_item:
             self.first_item = None
             self.last_item = None
@@ -84,6 +92,10 @@ class LinkedList:
     def insert(self, previous_item, new_item):
         """Insert item in the position after previous_item"""
         iteration_item = self.first_item
+        if not isinstance(new_item, LinkedListItem):
+            new_item = LinkedListItem(None, new_item, None)
+        if not isinstance(previous_item, LinkedListItem):
+            previous_item = self.take_item(previous_item)
         for i in range(self.length):
             if iteration_item == previous_item:
                 if iteration_item == self.last_item:

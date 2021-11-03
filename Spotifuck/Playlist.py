@@ -82,7 +82,7 @@ class PlayList(LinkedList):
         pygame.mixer.music.load(self.current_composition.data.music)
         pygame.mixer.music.play()
 
-    def play_pause(self, current_composition):
+    def play_pause(self):
         """Pause/Play track"""
         if pygame.mixer.music.get_busy():
             pygame.mixer.music.pause()

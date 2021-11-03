@@ -234,7 +234,7 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
             counter_of_clicks += 1
         playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
         composition = self.ui.MusicFromPlaylistList.currentItem().data(self.LINKED_LIST_ITEM_ROLE)
-        playlist.play_pause(composition)
+        playlist.play_pause()
 
     def previous_track(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
