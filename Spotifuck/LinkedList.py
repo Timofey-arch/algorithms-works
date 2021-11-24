@@ -1,7 +1,5 @@
 """Linked list class, realizing two-bounded circle list"""
-from Composition import Composition
 from LinkedListItem import LinkedListItem
-
 
 
 class LinkedList:
@@ -18,6 +16,8 @@ class LinkedList:
             item = LinkedListItem(None, item, None)
         self.first_item = item
         self.last_item = item
+        self.first_item.previous_link = self.last_item
+        self.last_item.next_link = self.first_item
         self.length += 1
 
     def append_left(self, item):
@@ -167,7 +167,7 @@ class LinkedList:
         iteration_index = 0
         for i in range(self.length):
             if iteration_index == index:
-                return iteration_item
+                return iteration_item.data
             else:
                 iteration_index += 1
             iteration_item = iteration_item.next_link
@@ -176,10 +176,7 @@ class LinkedList:
     def __contains__(self, item):
         iteration_item = self.first_item
         for i in range(self.length):
-            if iteration_item == item:
+            if iteration_item.data == item:
                 return True
             iteration_item = iteration_item.next_link
         return False
-
-    def __reversed__(self):
-        pass

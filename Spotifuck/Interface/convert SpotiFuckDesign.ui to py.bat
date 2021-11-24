@@ -1,0 +1,1 @@
+pyuic5 SpotiFuckDesign.ui -o SpotiFuckDesign.py

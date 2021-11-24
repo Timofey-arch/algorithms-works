@@ -1,0 +1,1 @@
+pyuic5 AddPlaylistWindow.ui -o AddPlaylistWindow.py

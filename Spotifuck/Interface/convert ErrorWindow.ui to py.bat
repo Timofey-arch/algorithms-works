@@ -1,0 +1,1 @@
+pyuic5 ErrorWindow.ui -o ErrorWindow.py

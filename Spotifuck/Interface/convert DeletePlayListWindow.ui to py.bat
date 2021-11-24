@@ -1,0 +1,1 @@
+pyuic5 DeletePlayListWindow.ui -o DeletePlayListWindow.py

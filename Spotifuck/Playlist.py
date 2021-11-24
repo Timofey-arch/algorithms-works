@@ -53,7 +53,9 @@ class PlayList(LinkedList):
     def append_track(self, track, position=None):
         """Append track in the position"""
         if self.length == 0:
+            self.append_right(track)
             self.current_composition = track
+            return
         if position is None:
             self.append_right(track)
         else:
@@ -88,7 +90,3 @@ class PlayList(LinkedList):
             pygame.mixer.music.pause()
         else:
             pygame.mixer.music.unpause()
-
-    def current(self):
-        """Return current composition"""
-        return self.current_composition

@@ -29,7 +29,7 @@ class AddPlaylistWindow(QtWidgets.QDialog):
         filename, filetype = QFileDialog.getOpenFileName(self,
                                                          "Выбрать файл",
                                                          ".",
-                                                         "PNG Files(*.png);;JPEG File(*.jpg);; All Files(*)")
+                                                         "PNG Files(*.png) ;;JPEG File(*.jpg);; All Files(*)")
         self.ui.FilePath.setText(filename)
 
 
@@ -182,6 +182,8 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
         self.ui.MusicFromPlaylistList.addItem(music_from_playlist_item)
         playlist_description = f"{playlist.playlist_author}, {playlist.length} track(s)"
         self.ui.PlayListDescription.setText(playlist_description)
+        for i in range(playlist.length):
+            print(playlist[i])
 
     def delete_music_from_playlist(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
@@ -189,6 +191,13 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
             return
         playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
         linked_list_item = self.ui.MusicFromPlaylistList.currentItem().data(self.LINKED_LIST_ITEM_ROLE)
+        if pygame.mixer.music.get_busy():
+            for i in range(playlist.length):
+                print(playlist[i])
+            pygame.mixer.music.stop()
+            playlist.delete_track(linked_list_item)
+            self.show_playlist_parameters()
+            return
         playlist.delete_track(linked_list_item)
         self.ui.MusicFromPlaylistList.takeItem(self.ui.MusicFromPlaylistList.currentRow())
         self.ui.MusicPicture.clear()
@@ -229,11 +238,7 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
     def pause_play_track(self):
         if not self.ui.MusicFromPlaylistList.currentItem():
             return
-        counter_of_clicks = 0
-        if self.ui.PlayPause.clicked:
-            counter_of_clicks += 1
         playlist = self.ui.PlayListList.currentItem().data(self.PLAYLIST_ROLE)
-        composition = self.ui.MusicFromPlaylistList.currentItem().data(self.LINKED_LIST_ITEM_ROLE)
         playlist.play_pause()
 
     def previous_track(self):
@@ -287,7 +292,7 @@ class SpotiFuckMainWindow(QtWidgets.QMainWindow):
             composition = QListWidgetItem()
             track = playlist[i]
             composition.setData(self.LINKED_LIST_ITEM_ROLE, track)
-            composition.setText(track.data.music_name + " - " + track.data.author)
+            composition.setText(track.music_name + " - " + track.author)
             self.ui.MusicFromPlaylistList.addItem(composition)
 
     def show_track_parameters(self):
