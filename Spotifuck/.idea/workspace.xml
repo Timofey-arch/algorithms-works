@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="134c4530-c2ba-485d-977c-45769e221809" name="Changes" comment="олмост олмост дан">
-      <change beforePath="$PROJECT_DIR$/.idea/Spotifuck.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Spotifuck.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkedList.py" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playlist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="134c4530-c2ba-485d-977c-45769e221809" name="Changes" comment="олмост олмост дан" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +44,7 @@
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python tests.Python tests for test_list.TestLinkedList">
     <configuration name="LinkedList" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Spotifuck" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,10 +136,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for test_list.TestLinkedList" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python tests.Python tests in test_list.py" />
         <item itemvalue="Python.LinkedList" />
-        <item itemvalue="Python tests.Python tests for test_list.TestLinkedList" />
         <item itemvalue="Python tests.Python tests for test_list.TestLinkedList.test_remove_failed" />
       </list>
     </recent_temporary>
@@ -186,6 +180,7 @@
       <workItem from="1637073322103" duration="2573000" />
       <workItem from="1637112120815" duration="5988000" />
       <workItem from="1637165053214" duration="1280000" />
+      <workItem from="1639128214670" duration="187000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed f**king python">
       <created>1634788881086</created>
@@ -305,7 +300,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Spotifuck$LinkedList.coverage" NAME="LinkedList Coverage Results" MODIFIED="1637052563735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Spotifuck$main.coverage" NAME="main Coverage Results" MODIFIED="1637116621158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Spotifuck$.coverage" NAME=" Coverage Results" MODIFIED="1637112275456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spotifuck$.coverage" NAME=" Coverage Results" MODIFIED="1639128325297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Spotifuck$test.coverage" NAME="test Coverage Results" MODIFIED="1635248699218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
